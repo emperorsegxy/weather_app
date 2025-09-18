@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ weather.city }} Weather</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-[#000] flex justify-center items-center text-white h-[100vh]">
+    <div class="bg-white rounded-lg shadow-[2px_2px_6px_rgba(0,0,0,0.08)] p-6">
+        <h1 class="text-4xl font-semibold text-blue-700">This is what the weather is like in <em>{{ weather.city }}</em>
+        </h1>
+        <form method="POST" action="/weather">
+            <label for="city" class="text-[#ccc] mt-6 block">Enter the name of your city</label>
+            <div class="city_name_field mt-1">
+                <input class="block focus:border-0 p-2 city_name" type="text" name="city" placeholder="Enter city name"
+                    required>
+            </div>
+            <input type="hidden" name="device_info" id="deviceInfo" />
+            <button class="bg-blue-700 px-4 py-3 mt-6 rounded-md" type="submit">Get Weather</button>
+        </form>
+        {% if weather %}
+        <div class="text-black my-6">
+            <h2 class="text-underline text-2xl font-semibold">Weather in {{ weather.city }}:</h2>
+            <p>Temperature: <strong>{{ weather.temperature }}°C</strong></p>
+            <p>Feels like: <strong>{{ weather.feels_like }}°C</strong></p>
+            <p>Description: <strong>{{ weather.description }}</strong></p>
+        </div>
+        {% elif error %}
+        <p style="color: red;">{{ error }}</p>
+        {% endif %}
+    </div>
+</body>
+
+</html>
