@@ -20,8 +20,13 @@
     height: 100%;
 }
 
+input.city_name {
+    color: blue;
+}
 
-/* input.city_name:-webkit-autofill,
+
+input.city_name:-webkit-autofill,
   input.city_name:-webkit-autofill:focus {
     transition: background-color 0s 600000s, color 0s 600000s !important;
-  } */
+    color: blue;
+  }
